@@ -1,29 +1,35 @@
 package model;
 
+import javax.persistence.*;
 
+@Entity
+@Table(name = "employee")
 public class Employee {
-    private String name;
-    private String surname;
-    private String gender;
-    private int age;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int cityID;
-    private City city;
 
-    public Employee(String name, String surname, String gender, int age, City city) {
+    @Column(name = "first_name", nullable = false)
+    private String name;
+    @Column(name = "last_name")
+    private String surname;
+    @Column(name = "gender")
+    private String gender;
+    @Column(name = "age")
+    private int age;
+
+    private int cityID;
+    private int city;
+
+    public Employee() {
+    }
+
+    public Employee(String name, String surname, String gender, int age, int city) {
         this.name = name;
         this.surname = surname;
         this.gender = gender;
         this.age = age;
         this.city = city;
-    }
-
-    public Employee(String name, String surname, String gender, int age, int cityID) {
-        this.name = name;
-        this.surname = surname;
-        this.gender = gender;
-        this.age = age;
-        this.cityID = cityID;
     }
 
     public String getName() {
@@ -74,11 +80,11 @@ public class Employee {
         this.cityID = cityID;
     }
 
-    public City getCity() {
+    public int getCity() {
         return city;
     }
 
-    public void setCity(City city) {
+    public void setCity(int city) {
         this.city = city;
     }
 
