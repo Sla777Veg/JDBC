@@ -12,9 +12,7 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) throws SQLException {
 
-        Connection connection = ConnectionManager.getConnection();
-
-        EmployeeDAO employeeDAO = new EmployeeDaoImpl(connection);
+        EmployeeDAO employeeDAO = new EmployeeDaoImpl();
 
         // Создаем объект
         //City city = new City(1, "Moscow");
@@ -46,7 +44,7 @@ public class Application {
         employeeDAO.updateAmountById(employee2);
 
         // Удаляем объект
-        employeeDAO.deleteById(employee2);
+        //employeeDAO.deleteById(employee2);
 
     }
 }

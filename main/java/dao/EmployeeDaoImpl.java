@@ -11,24 +11,21 @@ import hibernate.HibernateSessionFactoryUtil;
 
 public class EmployeeDaoImpl implements EmployeeDAO{
 
-    private Connection connection;
 
-    public EmployeeDaoImpl(Connection connection) {this.connection = connection;}
+
+    public EmployeeDaoImpl() {}
 
 
     @Override
     public List<Employee> findAll() {
-        //List<Employee> employees = new ArrayList<>();
-        List<Employee> employees = (List<Employee>)  HibernateSessionFactoryUtil
-                .getSessionFactory().openSession().createQuery("From Employee").list();
-        return employees;
+        try(Session session = HibernateSessionFactoryUtil
+                .getSessionFactory().openSession()) {
+            return session.createQuery("From Employee", Employee.class).list();
+        }
     }
 
     @Override
     public void create(Employee employee) {
-        if (employee.getCity() !=0 ) {
-            employee.setCity(0);
-        }
         // В ресурсах блока try создаем объект сессии с помощью нашего конфиг-файла
         // И открываем сессию
         try(Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();) {
