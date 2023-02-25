@@ -1,6 +1,5 @@
 import dao.EmployeeDAO;
-import dao.EmployeeDaoImpl;
-import jdbc.ConnectionManager;
+import impl.EmployeeDaoImpl;
 
 import model.Employee;
 
@@ -23,6 +22,12 @@ public class Application {
         // Вызываем метод добавления объекта
         employeeDAO.create(employee1);
 
+        Employee employee2 = new Employee("Vasily",
+                "Terkin",
+                "male",
+                34,3);
+        employeeDAO.create(employee2);
+
         // Получаем объект по id
         System.out.println(employeeDAO.readById(1));
 
@@ -35,16 +40,19 @@ public class Application {
             System.out.println(employee);
         }
 
-        Employee employee2 = new Employee("Vasily",
-                "Terkin",
-                "male",
-                34,3);
+
 
         // Изменяем объект
-        employeeDAO.updateAmountById(employee2);
+        //employeeDAO.updateAmountById(employee2);
+
+        employee1.setAge(15);
+        employee2.setName("Андрей");
+        System.out.println(employee1);
+        System.out.println(employee2);
+
 
         // Удаляем объект
-        //employeeDAO.deleteById(employee2);
+        //employeeDAO.deleteById(employee1);
 
     }
 }
